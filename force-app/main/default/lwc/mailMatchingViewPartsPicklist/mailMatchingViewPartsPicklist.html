@@ -1,0 +1,15 @@
+<template>
+  <div class="input-wrapper">
+    <lightning-combobox
+      name="fieldnames"
+      class="fieldnames"
+      label={label}
+      value={value}
+      placeholder="Choose Field Name"
+      options={selectOptions}
+      onchange={handleSelectChange}
+      required={required}
+    ></lightning-combobox>
+  </div>
+  <div class="lwc-combo"></div>
+</template>
