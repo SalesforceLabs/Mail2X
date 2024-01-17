@@ -72,51 +72,51 @@ global with sharing class MailMatchingHandler implements Messaging.InboundEmailH
       }
 
       //送信元メールから設定情報を取得
-      List<mail2x__MailMatchingSetting__c> matchSettings = [
+      List<MailMatchingSetting__c> matchSettings = [
         SELECT
           Name,
-          mail2x__AddressKey__c,
-          mail2x__ObjectApi__c,
-          mail2x__SubjectApi__c,
-          mail2x__SettingNameApi__c,
-          mail2x__ProviderNameApi__c,
-          mail2x__ProviderMailAddressApi__c,
-          mail2x__OriginalMessageApi__c,
-          mail2x__AttachmentFile__c,
-          mail2x__ErrorResMessage__c,
-          mail2x__SaveErrorLog__c,
-          mail2x__AddressTarget__c
+          AddressKey__c,
+          ObjectApi__c,
+          SubjectApi__c,
+          SettingNameApi__c,
+          ProviderNameApi__c,
+          ProviderMailAddressApi__c,
+          OriginalMessageApi__c,
+          AttachmentFile__c,
+          ErrorResMessage__c,
+          SaveErrorLog__c,
+          AddressTarget__c
         FROM
-          mail2x__MailMatchingSetting__c
+          MailMatchingSetting__c
         WHERE
-          mail2x__Availability__c = true AND mail2x__AddressKey__c IN :addressKeySet
+          Availability__c = true AND AddressKey__c IN :addressKeySet
         WITH SECURITY_ENFORCED
       ];
 
       for (MailMatchingSetting__c matchSetting : matchSettings) {
         List<String> targetCheck = new List<String>();
 
-        if (matchSetting.mail2x__AddressTarget__c.equalsIgnoreCase('from')) {
+        if (matchSetting.AddressTarget__c.equalsIgnoreCase('from')) {
           targetCheck.add(eaddr);
-        } else if (matchSetting.mail2x__AddressTarget__c.equalsIgnoreCase('to')) {
+        } else if (matchSetting.AddressTarget__c.equalsIgnoreCase('to')) {
           targetCheck = toaddr;
-        } else if (matchSetting.mail2x__AddressTarget__c.equalsIgnoreCase('transfer')) {
+        } else if (matchSetting.AddressTarget__c.equalsIgnoreCase('transfer')) {
           targetCheck.add(received);
         }
 
-        if (!targetCheck.contains(matchSetting.mail2x__AddressKey__c)) {
-          System.debug(LoggingLevel.WARN, 'address does not match:' + matchSetting.mail2x__AddressKey__c + ' / ' + targetCheck);
+        if (!targetCheck.contains(matchSetting.AddressKey__c)) {
+          System.debug(LoggingLevel.WARN, 'address does not match:' + matchSetting.AddressKey__c + ' / ' + targetCheck);
           continue;
         }
 
         errorTitle       = matchSetting.Name;
-        errorFileSetting = matchSetting.mail2x__AttachmentFile__c;
-        errorResMessage  = matchSetting.mail2x__ErrorResMessage__c;
-        saveErrorLog     = matchSetting.mail2x__SaveErrorLog__c;
+        errorFileSetting = matchSetting.AttachmentFile__c;
+        errorResMessage  = matchSetting.ErrorResMessage__c;
+        saveErrorLog     = matchSetting.SaveErrorLog__c;
 
-        List<MailMatchingDetail__c> matchDetail = [SELECT mail2x__FieldApi__c, mail2x__StartText1__c, mail2x__StartText2__c, mail2x__EndText1__c, mail2x__ManualMatching__c FROM mail2x__MailMatchingDetail__c WHERE mail2x__SettingMaster__c = :matchSetting.Id WITH SECURITY_ENFORCED];
+        List<MailMatchingDetail__c> matchDetail = [SELECT FieldApi__c, StartText1__c, StartText2__c, EndText1__c, ManualMatching__c FROM MailMatchingDetail__c WHERE SettingMaster__c = :matchSetting.Id WITH SECURITY_ENFORCED];
 
-        Schema.SObjectType objectType = Schema.getGlobalDescribe().get(matchSetting.mail2x__ObjectApi__c);
+        Schema.SObjectType objectType = Schema.getGlobalDescribe().get(matchSetting.ObjectApi__c);
 
         if (
           objectType.getDescribe().isCreateable() != true
@@ -133,45 +133,45 @@ global with sharing class MailMatchingHandler implements Messaging.InboundEmailH
 
         //固定パラメータ取得
         if (
-          matchSetting.mail2x__SubjectApi__c != null &&
-          objectType.getDescribe().fields.getMap().get(matchSetting.mail2x__SubjectApi__c).getDescribe().isCreateable() == true
+          matchSetting.SubjectApi__c != null &&
+          objectType.getDescribe().fields.getMap().get(matchSetting.SubjectApi__c).getDescribe().isCreateable() == true
         ) {
-          newRecord.put(matchSetting.mail2x__SubjectApi__c, subject);
+          newRecord.put(matchSetting.SubjectApi__c, subject);
         }
         if (
-          matchSetting.mail2x__SettingNameApi__c != null &&
-          objectType.getDescribe().fields.getMap().get(matchSetting.mail2x__SettingNameApi__c).getDescribe().isCreateable() == true
+          matchSetting.SettingNameApi__c != null &&
+          objectType.getDescribe().fields.getMap().get(matchSetting.SettingNameApi__c).getDescribe().isCreateable() == true
         ) {
-          newRecord.put(matchSetting.mail2x__SettingNameApi__c, matchSetting.Name);
+          newRecord.put(matchSetting.SettingNameApi__c, matchSetting.Name);
         }
         if (
-          matchSetting.mail2x__ProviderNameApi__c != null &&
-          objectType.getDescribe().fields.getMap().get(matchSetting.mail2x__ProviderNameApi__c).getDescribe().isCreateable() == true
+          matchSetting.ProviderNameApi__c != null &&
+          objectType.getDescribe().fields.getMap().get(matchSetting.ProviderNameApi__c).getDescribe().isCreateable() == true
         ) {
-          newRecord.put(matchSetting.mail2x__ProviderNameApi__c, ename);
+          newRecord.put(matchSetting.ProviderNameApi__c, ename);
         }
         if (
-          matchSetting.mail2x__ProviderMailAddressApi__c != null &&
-          objectType.getDescribe().fields.getMap().get(matchSetting.mail2x__ProviderMailAddressApi__c).getDescribe().isCreateable() == true
+          matchSetting.ProviderMailAddressApi__c != null &&
+          objectType.getDescribe().fields.getMap().get(matchSetting.ProviderMailAddressApi__c).getDescribe().isCreateable() == true
         ) {
-          newRecord.put(matchSetting.mail2x__ProviderMailAddressApi__c, eaddr);
+          newRecord.put(matchSetting.ProviderMailAddressApi__c, eaddr);
         }
         if (
-          matchSetting.mail2x__OriginalMessageApi__c != null &&
-          objectType.getDescribe().fields.getMap().get(matchSetting.mail2x__OriginalMessageApi__c).getDescribe().isCreateable() == true
+          matchSetting.OriginalMessageApi__c != null &&
+          objectType.getDescribe().fields.getMap().get(matchSetting.OriginalMessageApi__c).getDescribe().isCreateable() == true
         ) {
-          newRecord.put(matchSetting.mail2x__OriginalMessageApi__c, newLineBody);
+          newRecord.put(matchSetting.OriginalMessageApi__c, newLineBody);
         }
 
         //マッチングパラメータ
-        for (mail2x__MailMatchingDetail__c matchRule : matchDetail) {
-          String start1 = replaceRegString(matchRule.mail2x__StartText1__c);
-          String start2 = replaceRegString(matchRule.mail2x__StartText2__c);
-          String end1 = replaceRegString(matchRule.mail2x__EndText1__c);
+        for (MailMatchingDetail__c matchRule : matchDetail) {
+          String start1 = replaceRegString(matchRule.StartText1__c);
+          String start2 = replaceRegString(matchRule.StartText2__c);
+          String end1 = replaceRegString(matchRule.EndText1__c);
           String matchString = '';
           Boolean check = false;
 
-          Schema.SObjectField field = describeMap.get(matchRule.mail2x__FieldApi__c);
+          Schema.SObjectField field = describeMap.get(matchRule.FieldApi__c);
           Schema.DisplayType fldType = field.getDescribe().getType();
 
           if (
@@ -181,9 +181,9 @@ global with sharing class MailMatchingHandler implements Messaging.InboundEmailH
           }
 
           //マニュアルを優先
-          if (matchRule.mail2x__ManualMatching__c != null && !String.isBlank(matchRule.mail2x__ManualMatching__c.trim())) {
-            matchString = matchRule.mail2x__ManualMatching__c.replaceAll('\\\\n', '#n#');
-            setParamater(body, matchString, matchRule.mail2x__FieldApi__c, newRecord, fldType);
+          if (matchRule.ManualMatching__c != null && !String.isBlank(matchRule.ManualMatching__c.trim())) {
+            matchString = matchRule.ManualMatching__c.replaceAll('\\\\n', '#n#');
+            setParamater(body, matchString, matchRule.FieldApi__c, newRecord, fldType);
           } else {
             matchString = start1;
 
@@ -214,7 +214,7 @@ global with sharing class MailMatchingHandler implements Messaging.InboundEmailH
             check = check && matchMatcherEnd.find();
 
             if (check) {
-              setParamater(body, matchString, matchRule.mail2x__FieldApi__c, newRecord, fldType);
+              setParamater(body, matchString, matchRule.FieldApi__c, newRecord, fldType);
             }
           }
         }
