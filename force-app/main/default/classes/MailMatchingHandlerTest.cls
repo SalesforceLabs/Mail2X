@@ -28,22 +28,22 @@ private class MailMatchingHandlerTest {
     Test.startTest();
     MailMatchingSetting__c mailMatchingSetting = new MailMatchingSetting__c(
       Name = 'TestMail',
-      OriginalMessageApi__c = 'mail2x__OriginalMessage__c',
-      SubjectApi__c = 'mail2x__Subject__c',
+      OriginalMessageApi__c = 'OriginalMessage__c',
+      SubjectApi__c = 'Subject__c',
       AddressKey__c = 'dummy@dummy.com',
-      ObjectApi__c = 'mail2x__InquiryMail__c',
+      ObjectApi__c = 'InquiryMail__c',
       AddressTarget__c = 'From',
       Availability__c = true,
       AttachmentFile__c = true,
-      SettingNameApi__c = 'mail2x__SettingNameApi__c',
-      ProviderNameApi__c = 'mail2x__ProviderName__c',
-      ProviderMailAddressApi__c = 'mail2x__ProviderMailAddress__c'
+      SettingNameApi__c = 'SettingNameApi__c',
+      ProviderNameApi__c = 'ProviderName__c',
+      ProviderMailAddressApi__c = 'ProviderMailAddress__c'
     );
     insert mailMatchingSetting;
 
     MailMatchingDetail__c mailMatchingDetail = new MailMatchingDetail__c(
       Name = 'mailMatchingDetail',
-      FieldApi__c = 'mail2x__detail__c',
+      FieldApi__c = 'detail__c',
       SettingMaster__c = mailMatchingSetting.Id,
       ManualMatching__c = '',
       StartText1__c = 'dummy',
@@ -80,22 +80,22 @@ private class MailMatchingHandlerTest {
     Test.startTest();
     MailMatchingSetting__c mailMatchingSetting = new MailMatchingSetting__c(
       Name = 'TestMail',
-      OriginalMessageApi__c = 'mail2x__OriginalMessage__c',
-      SubjectApi__c = 'mail2x__Subject__c',
+      OriginalMessageApi__c = 'OriginalMessage__c',
+      SubjectApi__c = 'Subject__c',
       AddressKey__c = 'dummy2@dummy.com',
-      ObjectApi__c = 'mail2x__InquiryMail__c',
+      ObjectApi__c = 'InquiryMail__c',
       AddressTarget__c = 'To',
       Availability__c = true,
       AttachmentFile__c = true,
-      SettingNameApi__c = 'mail2x__SettingNameApi__c',
-      ProviderNameApi__c = 'mail2x__ProviderName__c',
-      ProviderMailAddressApi__c = 'mail2x__ProviderMailAddress__c'
+      SettingNameApi__c = 'SettingNameApi__c',
+      ProviderNameApi__c = 'ProviderName__c',
+      ProviderMailAddressApi__c = 'ProviderMailAddress__c'
     );
     insert mailMatchingSetting;
 
     MailMatchingDetail__c mailMatchingDetail = new MailMatchingDetail__c(
       Name = 'mailMatchingDetail',
-      FieldApi__c = 'mail2x__InquiryDateTime__c',
+      FieldApi__c = 'InquiryDateTime__c',
       SettingMaster__c = mailMatchingSetting.Id,
       ManualMatching__c = '',
       StartText1__c = 'dummy test sample',
@@ -138,22 +138,22 @@ private class MailMatchingHandlerTest {
     Test.startTest();
     MailMatchingSetting__c mailMatchingSetting = new MailMatchingSetting__c(
       Name = 'TestMail',
-      OriginalMessageApi__c = 'mail2x__OriginalMessage__c',
-      SubjectApi__c = 'mail2x__Subject__c',
+      OriginalMessageApi__c = 'OriginalMessage__c',
+      SubjectApi__c = 'Subject__c',
       AddressKey__c = 'dummy@dummy.com',
-      ObjectApi__c = 'mail2x__InquiryMail__c',
+      ObjectApi__c = 'InquiryMail__c',
       AddressTarget__c = 'From',
       Availability__c = true,
       AttachmentFile__c = true,
-      SettingNameApi__c = 'mail2x__SettingNameApi__c',
-      ProviderNameApi__c = 'mail2x__ProviderName__c',
-      ProviderMailAddressApi__c = 'mail2x__ProviderMailAddress__c'
+      SettingNameApi__c = 'SettingNameApi__c',
+      ProviderNameApi__c = 'ProviderName__c',
+      ProviderMailAddressApi__c = 'ProviderMailAddress__c'
     );
     insert mailMatchingSetting;
 
     MailMatchingDetail__c mailMatchingDetail = new MailMatchingDetail__c(
       Name = 'mailMatchingDetail',
-      FieldApi__c = 'mail2x__detail__c',
+      FieldApi__c = 'detail__c',
       SettingMaster__c = mailMatchingSetting.Id,
       ManualMatching__c = '',
       StartText1__c = 'dummy',
@@ -190,22 +190,22 @@ private class MailMatchingHandlerTest {
     Test.startTest();
     MailMatchingSetting__c mailMatchingSetting = new MailMatchingSetting__c(
       Name = 'TestMail',
-      OriginalMessageApi__c = 'mail2x__OriginalMessage__c',
-      SubjectApi__c = 'mail2x__Subject__c',
+      OriginalMessageApi__c = 'OriginalMessage__c',
+      SubjectApi__c = 'Subject__c',
       AddressKey__c = 'dummy@dummy.com',
-      ObjectApi__c = 'mail2x__InquiryMail__c',
+      ObjectApi__c = 'InquiryMail__c',
       AddressTarget__c = 'transfer',
       Availability__c = true,
       AttachmentFile__c = true,
-      SettingNameApi__c = 'mail2x__SettingNameApi__c',
-      ProviderNameApi__c = 'mail2x__ProviderName__c',
-      ProviderMailAddressApi__c = 'mail2x__ProviderMailAddress__c'
+      SettingNameApi__c = 'SettingNameApi__c',
+      ProviderNameApi__c = 'ProviderName__c',
+      ProviderMailAddressApi__c = 'ProviderMailAddress__c'
     );
     insert mailMatchingSetting;
 
     MailMatchingDetail__c mailMatchingDetail = new MailMatchingDetail__c(
       Name = 'mailMatchingDetail',
-      FieldApi__c = 'mail2x__detail__c',
+      FieldApi__c = 'detail__c',
       SettingMaster__c = mailMatchingSetting.Id,
       ManualMatching__c = 'dummy.*?\n(.*?)\n',
       StartText1__c = 'dummy',
@@ -242,23 +242,23 @@ private class MailMatchingHandlerTest {
     Test.startTest();
     MailMatchingSetting__c mailMatchingSetting = new MailMatchingSetting__c(
       Name = 'TestMail',
-      OriginalMessageApi__c = 'mail2x__OriginalMessage__c',
-      SubjectApi__c = 'mail2x__Subject__c',
+      OriginalMessageApi__c = 'OriginalMessage__c',
+      SubjectApi__c = 'Subject__c',
       AddressKey__c = 'dummy@dummy.com',
-      ObjectApi__c = 'mail2x__InquiryMail__c',
+      ObjectApi__c = 'InquiryMail__c',
       AddressTarget__c = 'From',
       Availability__c = true,
       AttachmentFile__c = true,
-      SettingNameApi__c = 'mail2x__SettingNameApi__c',
-      ProviderNameApi__c = 'mail2x__ProviderName__c',
-      ProviderMailAddressApi__c = 'mail2x__ProviderMailAddress__c',
+      SettingNameApi__c = 'SettingNameApi__c',
+      ProviderNameApi__c = 'ProviderName__c',
+      ProviderMailAddressApi__c = 'ProviderMailAddress__c',
       SaveErrorLog__c = true
     );
     insert mailMatchingSetting;
 
     MailMatchingDetail__c mailMatchingDetail = new MailMatchingDetail__c(
       Name = 'mailMatchingDetail',
-      FieldApi__c = 'mail2x__dummy__c',
+      FieldApi__c = 'dummy__c',
       SettingMaster__c = mailMatchingSetting.Id,
       ManualMatching__c = '',
       StartText1__c = 'dummy test sample',

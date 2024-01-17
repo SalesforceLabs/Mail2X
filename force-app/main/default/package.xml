@@ -2,7 +2,6 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>mail2x</fullName>
     <apiAccessLevel>Unrestricted</apiAccessLevel>
-    <namespacePrefix>mail2x</namespacePrefix>
     <types>
         <members>MailMatchingGetChoiceListForFlow</members>
         <members>MailMatchingGetChoiceListForFlowTest</members>
