@@ -93,10 +93,10 @@
         <name>Flow</name>
     </types>
     <types>
-        <members>InquiryMail__c-取込メールレイアウト</members>
-        <members>Mail2XErrorMail__c-Mail2Xエラーメールレイアウト</members>
-        <members>MailMatchingDetail__c-Mail2Xマッチング設定レイアウト</members>
-        <members>MailMatchingSetting__c-メール取込設定レイアウト</members>
+        <members>InquiryMail__c-InquiryMail</members>
+        <members>Mail2XErrorMail__c-Mail2XErrorMail</members>
+        <members>MailMatchingDetail__c-MailMatchingDetail</members>
+        <members>MailMatchingSetting__c-MailMatchingSetting</members>
         <name>Layout</name>
     </types>
     <types>
